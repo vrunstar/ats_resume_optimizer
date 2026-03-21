@@ -81,13 +81,13 @@ Open the URL provided by Streamlit in your browser.
   - optionally replace single quotes to double quotes
 - `pdf_exporter` now uses `styles["BodyText"]` (valid ReportLab style)
 
-## 🐛 Common issues
+## Common issues
 
 - `Error: Style 'Bodytext' not found` -> fixed in `src/pdf_exporter.py`
 - `Expecting ',' delimiter` -> invalid AI output JSON; the parser now handles extra formatting and reports snippet.
 - Model call fails: check API key, model config, network connectivity.
 
-## 🧪 Testing
+## Testing
 
 Static syntax check:
 
@@ -95,7 +95,7 @@ Static syntax check:
 python -m py_compile app.py src/*.py
 ```
 
-## ✨ Enhancement ideas
+## Enhancement ideas
 
 - Add a local `fallback` non-AI text rewrite path
 - Add optional source/experience section mapping
