@@ -51,7 +51,7 @@ GEMINI_API_KEY = "YOUR_API_KEY"
 GEMINI_MODEL = "gemini-2.5-flash"  # or whichever model you use
 ```
 
-## ▶ Run locally
+## Run locally
 
 ```bash
 streamlit run app.py
@@ -72,7 +72,7 @@ Open the URL provided by Streamlit in your browser.
    - Suggestions
 5. Click **Download Resume as PDF**.
 
-## 🛡️ Error handling and robust behavior
+## Error handling and robust behavior
 
 - `extract_json` in `src/parser.py` will:
   - strip code fences (```json)
@@ -102,6 +102,6 @@ python -m py_compile app.py src/*.py
 - Use fine-tuned model for better resume-specific JSON output
 - Add configurable output language, formatting style, and ATS scoring
 
-## 📄 License
+## License
 
-MIT License (or your preferred license)
+This project is licensed under MIT License.
