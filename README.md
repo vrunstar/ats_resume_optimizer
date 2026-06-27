@@ -1,107 +1,68 @@
-# AI-based ATS Resume Optimizer
+# ATS Resume Optimizer
 
-A Streamlit app that analyzes a job description and your resume, then generates an ATS-friendly optimized resume with keyword matching and PDF export.
+A resume optimization web app with a React frontend and FastAPI backend.
+The app analyzes resume text or uploaded PDF/DOCX files against a job description and returns ATS-relevant feedback, keyword matching, and formatting suggestions.
 
-## Features
+## Project structure
 
-- Extracts role, keywords, skills, tools, and soft skills from job description using AI model
-- Rewrites resume text to align with job description (ATS-friendly)
-- Highlights matched and missing keywords
-- Provides suggestions
-- Exports optimized resume to PDF (split into sections, bullet formatting)
+- `backend/` - Python FastAPI backend
+- `frontend/` - React + Vite frontend
+- `ats/` - Python virtual environment for the backend
 
-## Project Structure
+## Requirements
 
-- `app.py` — Streamlit UI and orchestration
-- `src/extractor.py` — runs keyword extraction prompt
-- `src/optimizer.py` — runs resume optimization prompt
-- `src/formatter.py` — normalize output text formatting
-- `src/pdf_exporter.py` — converts optimized text to PDF using ReportLab
-- `src/parser.py` — resilient JSON extraction from model response
-- `src/gemini_client.py` — model client wrapper
-- `src/prompt.py` — prompt templates
-- `src/config.py` — environment configuration for Gemini API
+- Python 3.12+ (or the version used by `ats/`)
+- Node.js 18+ / npm
 
-## Prerequisites
+## Backend setup
 
-- Python 3.11+
-- `pip` package manager
-- `streamlit` for running app
-- `reportlab` for PDF generation
-- Google Gemini API key and model configured in `src/config.py`
+1. Activate the Python virtual environment:
+   - Windows PowerShell: `.ackend\..\ats\Scripts\Activate.ps1`
+   - Windows CMD: `.ackend\..\ats\Scripts\activate.bat`
 
-## Install dependencies
+2. Install backend dependencies:
+   ```powershell
+   pip install -r backend\requirements.txt
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+3. Create a `.env` file in `backend/` with values:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key
+   GEMINI_MODEL=gemini-2.5-flash
+   ALLOWED_ORIGINS=http://localhost:5173
+   ```
 
-If `requirements.txt` is missing one or more packages, add manually:
+4. Start the backend server:
+   ```powershell
+   cd backend
+   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+   ```
 
-```bash
-pip install streamlit reportlab google-generativeai
-```
+## Frontend setup
 
-## Configuration
+1. Install frontend dependencies:
+   ```powershell
+   cd frontend
+   npm install
+   ```
 
-Edit `src/config.py`:
+2. Start the frontend dev server:
+   ```powershell
+   npm run dev
+   ```
 
-```python
-GEMINI_API_KEY = "YOUR_API_KEY"
-GEMINI_MODEL = "gemini-2.5-flash"  # or whichever model you use
-```
+3. Open the app in your browser at `http://localhost:5173`
 
-## Run locally
+## Notes
 
-```bash
-streamlit run app.py
-```
+- The frontend proxy is configured in `frontend/vite.config.js` to forward `/analyse` requests to `http://localhost:8000`.
+- The backend requires the `GEMINI_API_KEY` environment variable and uses the `fastapi` server.
+- Resume uploads are handled via multipart form data in `frontend/src/api.js`.
 
-Open the URL provided by Streamlit in your browser.
+## Useful files
 
-## Usage
-
-1. Paste job description into left column.
-2. Paste your current resume text into right column.
-3. Click **Optimize Resume**.
-4. Review:
-   - Target Role
-   - Extracted Keywords
-   - ATS Optimized Resume
-   - Matched/ Missing Keywords
-   - Suggestions
-5. Click **Download Resume as PDF**.
-
-## Error handling and robust behavior
-
-- `extract_json` in `src/parser.py` will:
-  - strip code fences (```json)
-  - fallback to first `{...}` JSON block
-  - remove trailing commas `,}` / `,]`
-  - optionally replace single quotes to double quotes
-- `pdf_exporter` now uses `styles["BodyText"]` (valid ReportLab style)
-
-## Common issues
-
-- `Error: Style 'Bodytext' not found` -> fixed in `src/pdf_exporter.py`
-- `Expecting ',' delimiter` -> invalid AI output JSON; the parser now handles extra formatting and reports snippet.
-- Model call fails: check API key, model config, network connectivity.
-
-## Testing
-
-Static syntax check:
-
-```bash
-python -m py_compile app.py src/*.py
-```
-
-## Enhancement ideas
-
-- Add a local `fallback` non-AI text rewrite path
-- Add optional source/experience section mapping
-- Use fine-tuned model for better resume-specific JSON output
-- Add configurable output language, formatting style, and ATS scoring
-
-## License
-
-This project is licensed under MIT License.
+- `backend/main.py` - FastAPI endpoint implementation
+- `backend/src/config.py` - environment config and Gemini API settings
+- `frontend/src/api.js` - client API request logic
+- `frontend/package.json` - frontend dependencies and scripts
+- `frontend/vite.config.js` - Vite server and proxy config

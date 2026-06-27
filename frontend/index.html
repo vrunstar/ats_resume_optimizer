@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATS Resume Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --bg:        #ffffff;
+        --surface:   #f8f9fa;
+        --border:    #e5e7eb;
+        --text:      #1a1a2e;
+        --muted:     #6b7280;
+        --accent:    #2563eb;
+        --accent-lt: #eff6ff;
+        --green:     #16a34a;
+        --green-lt:  #f0fdf4;
+        --red:       #dc2626;
+        --red-lt:    #fef2f2;
+        --yellow:    #d97706;
+        --yellow-lt: #fffbeb;
+        --font-serif: 'DM Serif Display', serif;
+        --font-sans:  'Inter', sans-serif;
+        --radius:     8px;
+      }
+      body {
+        font-family: var(--font-sans);
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
