@@ -194,14 +194,14 @@ export default function Results() {
   return (
     <div style={styles.page}>
       {/* Header */}
-      <header style={styles.header}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <img src="/logo.svg" alt="pauseresumeplay logo" style={{ height: "32px", width: "auto", filter: "invert(1)" }} />
-          <div style={styles.logo}>
-            pause<span style={styles.logoAccent}>resume</span>play
+      <header style={{ ...styles.header, justifyContent: "center", borderBottom: "none", paddingBottom: 0, position: "relative" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <img src="/logo.svg" alt="pauseresume.ai logo" style={{ height: "20px", width: "auto" }} />
+          <div style={{ ...styles.logo, fontSize: "clamp(2.2rem, 6vw, 3.2rem)" }}>
+            <span style={styles.logoAccent}>results</span>
           </div>
         </div>
-        <button style={styles.backBtn} onClick={() => navigate("/")}>
+        <button style={{ ...styles.backBtn, position: "absolute", right: "24px", top: "50%" , transform: "translateY(-50%)" }} onClick={() => navigate("/")}>
           ← Check another
         </button>
       </header>

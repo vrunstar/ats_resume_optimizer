@@ -18,7 +18,7 @@ const styles = {
   },
   logo: {
     fontFamily: "var(--font-serif)",
-    fontSize:   "1.75rem",
+    fontSize:   "1.4rem",
     color:      "var(--text)",
     letterSpacing: "-0.01em",
   },
@@ -29,7 +29,7 @@ const styles = {
     flex:          1,
     maxWidth:      "860px",
     margin:        "0 auto",
-    padding:       "60px 24px 80px",
+    padding:       "80px 24px 80px",
     width:         "100%",
   },
   hero: {
@@ -46,7 +46,7 @@ const styles = {
   heroSub: {
     fontSize:  "1rem",
     color:     "var(--muted)",
-    maxWidth:  "760px",
+    maxWidth:  "480px",
     margin:    "0 auto",
     lineHeight: 1.6,
   },
@@ -248,25 +248,17 @@ export default function Home() {
     <div style={styles.page}>
       <style>{scanKeyframes}</style>
 
-      {/* Header */}
-      <header style={styles.header}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-          <div style={styles.logo}>
-            ATS <span style={styles.logoAccent}>Check</span>
-          </div>
-        </div>
-      </header>
-
       <main style={styles.main}>
-        {/* Hero */}
+        {/* Hero — logo + name + tagline all in one */}
         <div style={styles.hero}>
-          <h1 style={styles.heroTitle}>
-            Is your resume ATS-ready?
-          </h1>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginBottom: "16px" }}>
+            <img src="/logo.svg" alt="pauseresume.ai logo" style={{ height: "40px", width: "auto" }} />
+            <div style={{ ...styles.logo, fontSize: "clamp(2.2rem, 6vw, 3.2rem)" }}>
+              pause<span style={styles.logoAccent}>resume</span>.ai
+            </div>
+          </div>
           <p style={styles.heroSub}>
             Upload your resume and optionally paste a job description.
-            </p>
-            <p style={styles.heroSub}>
             Get an instant report card — score, keyword gaps, and actionable fixes.
           </p>
         </div>

@@ -78,8 +78,8 @@ export default function ScoreRing({ score = 0, size = 160 }) {
           style={{
             transform:      `rotate(90deg)`,
             transformOrigin: "center",
-            fontSize:        size * 0.22,
-            fontWeight:      700,
+            fontSize:        size * .3,
+            fontWeight:      800,
             fontFamily:      "var(--font-sans)",
             fill:            color,
           }}
@@ -91,7 +91,7 @@ export default function ScoreRing({ score = 0, size = 160 }) {
       <div style={{ textAlign: "center" }}>
         <div
           style={{
-            fontSize:   "0.8rem",
+            fontSize:   "1rem",
             fontWeight: 600,
             color,
             letterSpacing: "0.05em",
